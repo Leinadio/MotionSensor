@@ -7,7 +7,7 @@ const board = new five.Board({
 board.on("ready", function() {
 
   // Create a new `motion` hardware instance.
-  var motion = new five.Motion(7);
+  var motion = new five.Motion('GPIO18');
 
   // "calibrated" occurs once, at the beginning of a session,
   motion.on("calibrated", function() {
