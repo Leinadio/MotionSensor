@@ -1,4 +1,4 @@
-var Raspi = require('raspi-io');
+const Raspi = require('raspi-io');
 var five = require("johnny-five");
 const board = new five.Board({
   io: new Raspi()
@@ -7,7 +7,7 @@ const board = new five.Board({
 board.on("ready", function() {
 
   // Create a new `motion` hardware instance.
-  var motion = new five.Motion('GPIO18');
+  var motion = new five.Motion('P1-7');
 
   // "calibrated" occurs once, at the beginning of a session,
   motion.on("calibrated", function() {
