@@ -8,6 +8,7 @@ board.on("ready", function() {
 
   // Create a new `motion` hardware instance.
   var motion = new five.Motion('P1-7');
+  console.log('motion  : ', motion )
 
   // "calibrated" occurs once, at the beginning of a session,
   motion.on("calibrated", function() {
