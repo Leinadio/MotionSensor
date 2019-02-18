@@ -26,7 +26,7 @@ board.on("ready", function() {
     console.log("motionend");
   });
 
-  // motion.on("data", function(data) {
-  //   console.log(data);
-  // });
+  motion.on("data", function(data) {
+    console.log(data);
+  });
 });
