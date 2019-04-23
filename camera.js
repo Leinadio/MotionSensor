@@ -8,4 +8,6 @@ router.get('/stream', (req, res) => {
   vstream.stdout.pipe(res);
 });
 
+express.listen(3000)
+
 module.exports = router;
