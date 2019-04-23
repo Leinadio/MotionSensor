@@ -9,5 +9,3 @@ app.get('/stream', (req, res) => {
 });
 
 app.listen(3000);
-
-module.exports = router;
