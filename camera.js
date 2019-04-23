@@ -1,12 +1,12 @@
 const { spawn } = require('child_process');
 const express = require('express');
+const http = require('http');
 const app = express();
 
-const vstream = spawn('raspivid', ['-t', '5000', '-o', 'vid.h264', '-n']);
+const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
 
-app.get('/stream', (req, res) => {
-  console.log('res : ', res);
-  vstream.stdout.pipe(res);
+const server = http.createServer(function(request, response) {
+  child.stdout.pipe(response);
 });
-
-app.listen(3000);
+server.listen(8080);
+console.log("Server is listening on port 8080");
