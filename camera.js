@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 
-const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
+const child = spawn('raspivid', ['-n', '-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
