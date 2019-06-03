@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
     'Content-Type': 'video/mp4',
   };
   res.writeHead(200, head);
-  fs.createReadStream(child).pipe(res);
+  child.stdout.pipe(res);
 });
 
 app.listen(3000, function () {
