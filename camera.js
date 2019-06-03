@@ -1,12 +1,23 @@
 const { spawn } = require('child_process');
 const express = require('express');
-const http = require('http');
+const fs = require('fs');
 const app = express();
 
 const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
 
-const server = http.createServer(function(request, response) {
-  child.stdout.pipe(response);
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function(req, res) {
+  // const path = './video_lisbonne.mp4';
+  // const stat = fs.statSync(path);
+  // const fileSize = stat.size;
+  const head = {
+    // 'Content-Length': fileSize,
+    'Content-Type': 'video/mp4',
+  };
+  res.writeHead(200, head);
+  fs.createReadStream(child).pipe(res);
 });
-server.listen(8080);
-console.log("Server is listening on port 8080");
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+});
