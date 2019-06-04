@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
   };
   res.writeHead(200, head);
   child.stdout.on('data', (data) => {
-    fs.createReadStream(data).pipe(res);
+    data.pipe(res);
   })
 });
 
