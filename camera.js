@@ -4,6 +4,7 @@ const fs = require('fs');
 const app = express();
 
 const child = spawn('raspivid', ['-n', '-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
+console.log('child : ', child);
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
@@ -15,7 +16,7 @@ app.get('/', function(req, res) {
     'Content-Type': 'video/mp4',
   };
   res.writeHead(200, head);
-  fs.createReadStream(child.toString('base64')).pipe(res);
+  fs.createReadStream(child).pipe(res);
 });
 
 app.listen(3000, function () {
