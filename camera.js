@@ -2,11 +2,10 @@ const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
 const { Readable } = require('stream');
-
+const a = new Readable();
 
 const child = spawn('raspivid', ['-n', '-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
 console.log('child : ', child);
-const a = new Readable();
 
 app.get('/', function(req, res) {
   const head = {
