@@ -1,25 +1,21 @@
 const { spawn } = require('child_process');
 const express = require('express');
-const fs = require('fs');
 const app = express();
+const { Readable } = require('stream');
+
 
 const child = spawn('raspivid', ['-n', '-hf', '-w', '1280', '-h', '1024', '-t', '999999999', '-fps', '20', '-b', '5000000', '-o', '-']);
 console.log('child : ', child);
+const a = new Readable();
 
-
-
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  // const path = './video_lisbonne.mp4';
-  // const stat = fs.statSync(path);
-  // const fileSize = stat.size;
   const head = {
-    // 'Content-Length': fileSize,
     'Content-Type': 'video/mp4',
   };
   res.writeHead(200, head);
   child.stdout.on('data', (data) => {
-    data.stdout.pipe(res);
+    a.push(data);
+    a.pipe(res);
   })
 });
 
