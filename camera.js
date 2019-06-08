@@ -22,8 +22,8 @@ app.get('/', function(req, res) {
     'Content-Type': 'video/mp4',
   };
   child1.stdout.on('data', (data) => {
-    res.send(data);
     console.log('data : ', data);
+    res.send(data);
     // data.pipe(res);
   })
   // res.writeHead(200, head);
