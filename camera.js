@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
   };
   child1.stdout.on('data', (data) => {
     console.log('data : ', data);
-    res.send(data);
+    res.send(data.toString('utf8'));
     // data.pipe(res);
   })
   res.setHeader("Content-Type", "text/html");
