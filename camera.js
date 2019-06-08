@@ -26,6 +26,7 @@ app.get('/', function(req, res) {
     res.send(data);
     // data.pipe(res);
   })
+  res.end()
   // res.writeHead(200, head);
 });
 
