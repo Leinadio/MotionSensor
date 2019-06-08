@@ -26,6 +26,7 @@ app.get('/', function(req, res) {
     res.send(data);
     // data.pipe(res);
   })
+  res.setHeader("Content-Type", "text/html");
   res.end()
   // res.writeHead(200, head);
 });
