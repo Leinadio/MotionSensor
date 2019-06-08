@@ -23,8 +23,8 @@ app.get('/', function(req, res) {
   };
   child1.stdout.on('data', (data) => {
     console.log('data : ', data.toString());
+    res.send(data.toString())
   })
-  res.send(data.toString())
 });
 
 app.listen(3000, function () {
