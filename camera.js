@@ -23,12 +23,8 @@ app.get('/', function(req, res) {
   };
   child1.stdout.on('data', (data) => {
     console.log('data : ', data);
-    res.write(data.toString('utf8'));
-    // data.pipe(res);
   })
-  res.setHeader("Content-Type", "text/html");
-  res.end()
-  // res.writeHead(200, head);
+  res.send(child1)
 });
 
 app.listen(3000, function () {
