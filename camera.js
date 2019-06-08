@@ -22,9 +22,9 @@ app.get('/', function(req, res) {
     'Content-Type': 'video/mp4',
   };
   child1.stdout.on('data', (data) => {
-    console.log('data : ', data);
+    console.log('data : ', data.toString());
   })
-  res.send(child1)
+  res.send(data.toString())
 });
 
 app.listen(3000, function () {
