@@ -16,14 +16,14 @@ const a = new Readable();
  * @type {ChildProcessWithoutNullStreams}
  */
 const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '5000', '-fps', '20', '-b', '5000000', '-o', 'pivideo.h264 ']);
-const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
+// const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
 
 app.get('/', function(req, res) {
   const head = {
     'Content-Type': 'video/mp4',
   };
   res.writeHead(200, head);
-  child2.stdout.on('data', (data) => {
+  child1.stdout.on('data', (data) => {
     console.log('data : ', data);
     a.push(data);
     a.pipe(res);
