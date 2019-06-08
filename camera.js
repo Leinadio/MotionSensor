@@ -23,8 +23,9 @@ app.get('/', function(req, res) {
   };
   res.writeHead(200, head);
   child1.stdout.on('data', (data) => {
+    res.send(data);
     console.log('data : ', data);
-    data.pipe(res);
+    // data.pipe(res);
   })
 });
 
