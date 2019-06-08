@@ -14,6 +14,7 @@ const app = express();
  * @type {ChildProcessWithoutNullStreams}
  */
 const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '999999', '-fps', '20', '-b', '5000000', '-o', 'vid.mp4']);
+console.log('child1 : ', child1);
 // const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
 
 app.get('/', function(req, res) {
