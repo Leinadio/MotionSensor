@@ -21,12 +21,12 @@ app.get('/', function(req, res) {
   const head = {
     'Content-Type': 'video/mp4',
   };
-  res.writeHead(200, head);
   child1.stdout.on('data', (data) => {
     res.send(data);
     console.log('data : ', data);
     // data.pipe(res);
   })
+  // res.writeHead(200, head);
 });
 
 app.listen(3000, function () {
