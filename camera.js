@@ -19,7 +19,9 @@ const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
 
 app.get('/', (req, res) => {
   const path = './pivideo.mp4';
-  const a = fs.access(path);
+  const a = fs.access(path, (err) => {
+    console.log('err : ', err);
+  });
   console.log('a : ', a);
 
   const stat = fs.statSync(path);
