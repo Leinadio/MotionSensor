@@ -18,9 +18,9 @@ const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '5000
 // console.log('child2 : ', child2);
 
 app.get('/', function(req, res) {
-  child2.on('data', (data) => {
-    console.log('data : ', data);
-  })
+  // child2.on('data', (data) => {
+  //   console.log('data : ', data);
+  // })
   // const head = {
   //   'Content-Type': 'video/mp4',
   // };
