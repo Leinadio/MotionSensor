@@ -17,7 +17,7 @@ const app = express();
 const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '5000', '-fps', '20', '-b', '5000000', '-o', 'pivideo.h264']);
 const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
 
-app.get('/', function(req, res)
+app.get('/', (req, res) => {
   const path = './pivideo.mp4';
   const a = fs.access(path);
   console.log('a : ', a);
