@@ -26,7 +26,6 @@ app.get('/', function(req, res) {
     'Content-Length': fileSize,
     'Content-Type': 'video/mp4',
   };
-  res.end();
   res.writeHead(200, head);
   fs.createReadStream(path).pipe(res);
 });
