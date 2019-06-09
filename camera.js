@@ -20,18 +20,19 @@ const child2 = spawn('MP4Box', ['-add', 'pivideo.h264', 'pivideo.mp4']);
 app.get('/', (req, res) => {
   const path = './pivideo.mp4';
   const a = fs.access(path, (err) => {
-    console.log('err : ', err);
+    if (err) {
+      res.end('No file exist');
+      return;
+    }
+    const stat = fs.statSync(path);
+    const fileSize = stat.size;
+    const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+    };
+    res.writeHead(200, head);
+    fs.createReadStream(path).pipe(res);
   });
-  console.log('a : ', a);
-
-  const stat = fs.statSync(path);
-  const fileSize = stat.size;
-  const head = {
-    'Content-Length': fileSize,
-    'Content-Type': 'video/mp4',
-  };
-  res.writeHead(200, head);
-  fs.createReadStream(path).pipe(res);
 });
 
 app.listen(3000, function () {
