@@ -10,8 +10,8 @@ const app = express();
  * -h set height
  * -t set timeout
  * -b Set bitrate
- * -o Set output
  * -fps Specify the frames per second to record
+ * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
 const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '5000', '-fps', '20', '-b', '5000000', '-o', 'pivideo.h264']);
@@ -38,5 +38,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, function () {
-  console.log('Example app listenidsdfdfng on port 3000!')
+  console.log('Example app listening on port 3000!')
 });
