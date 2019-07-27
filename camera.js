@@ -15,19 +15,9 @@ const app = express();
  * @type {ChildProcessWithoutNullStreams}
  */
 const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
-console.log('child1 : ', child);
-process.stdin.pipe(child.stdin);
-
-child.stdout.on('data', (data) => {
-  console.log(`child stdout:\n${data}`);
-});
-// child1.on('exit', () => {
-//   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
-// });
-
 
 app.get('/', (req, res) => {
-  res.end('Ok')
+  child.stdout.pipe(res)
 });
 
 app.listen(3000, function () {
