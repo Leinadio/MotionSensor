@@ -14,17 +14,19 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
-console.log('child1 : ', child1);
+const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
+console.log('child1 : ', child);
+process.stdin.pipe(child.stdin);
+
+child.stdout.on('data', (data) => {
+  console.log(`child stdout:\n${data}`);
+});
 // child1.on('exit', () => {
 //   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
 // });
 
 
 app.get('/', (req, res) => {
-  child1.stdout.on('data', (data) => {
-    console.log('data ' , data);
-  });
   res.end('Ok')
 });
 
