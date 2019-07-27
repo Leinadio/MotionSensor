@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const express = require('express');
+const http = require("http");
 const fs = require('fs');
 const app = express();
 
@@ -16,10 +17,14 @@ const app = express();
  */
 const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
 
-app.get('/', (req, res) => {
-  child.stdout.pipe(res)
+// app.get('/', (req, res) => {
+//   child.stdout.pipe(res)
+// });
+
+const server = http.createServer(function(request, response) {
+  child.stdout.pipe(response);
 });
 
-app.listen(3000, function () {
+server.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 });
