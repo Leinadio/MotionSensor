@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
   child1.stdout.on('data', (data) => {
     console.log('data ' , data);
   })
+  res.en('Ok')
 });
 
 app.listen(3000, function () {
