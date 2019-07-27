@@ -23,7 +23,7 @@ const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', 
 app.get('/', (req, res) => {
   child1.stdout.on('data', (data) => {
     console.log('data ' , data);
-  })
+  });
   res.end('Ok')
 });
 
