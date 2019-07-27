@@ -15,7 +15,7 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
+const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', '-']);
 
 // app.get('/', (req, res) => {
 //   child.stdout.pipe(res)
