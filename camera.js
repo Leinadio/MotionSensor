@@ -19,6 +19,10 @@ child1.on('exit', () => {
   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
 });
 
+child1.stdout.on('data', (data) => {
+  console.log('data ' , data);
+})
+
 app.get('/', (req, res) => {
   const path = './pivideo.mp4';
   fs.access(path, (err) => {
