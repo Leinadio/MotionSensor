@@ -15,14 +15,11 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '|', 'mplayer', '-fps', '20', '-cache', '1024', '-']);
+// const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '|', 'mplayer', '-fps', '20', '-cache', '1024', '-']);
+const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
-// app.get('/', (req, res) => {
-//   child.stdout.pipe(res)
-// });
-
-const server = http.createServer(function(request, response) {
-  child.stdout.pipe(response);
+app.get('/', (req, res) => {
+  child.stdout.pipe(res)
 });
 
 server.listen(3000, function () {
