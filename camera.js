@@ -25,8 +25,7 @@ child1.stdout.on('data', (data) => {
 })
 
 app.get('/', (req, res) => {
-  const path = './pivideo.mp4';
-    child1.pipe(res);
+  child1.pipe(res);
 });
 
 app.listen(3000, function () {
