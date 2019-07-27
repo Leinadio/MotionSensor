@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
   child1.stdout.on('data', (data) => {
     console.log('data ' , data);
   })
-  child1.pipe(res);
 });
 
 app.listen(3000, function () {
