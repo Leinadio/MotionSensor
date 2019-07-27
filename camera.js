@@ -19,11 +19,11 @@ const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', 
 //   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
 // });
 
-child1.stdout.on('data', (data) => {
-  console.log('data ' , data);
-})
 
 app.get('/', (req, res) => {
+  child1.stdout.on('data', (data) => {
+    console.log('data ' , data);
+  })
   child1.pipe(res);
 });
 
