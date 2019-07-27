@@ -16,7 +16,6 @@ const app = express();
  */
 const child1 = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
 console.log('child1 : ', child1);
-console.log('child1.stdout : ', child1.stdout);
 // child1.on('exit', () => {
 //   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
 // });
