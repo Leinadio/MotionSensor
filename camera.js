@@ -20,7 +20,7 @@ child1.on('exit', () => {
   spawn('MP4Box', ['-new', 'pivideo.h264', 'pivideo.mp4']);
 });
 
-child1.stdout.on('data', (data) => {
+child1.on('data', (data) => {
   console.log('data ' , data);
 })
 
