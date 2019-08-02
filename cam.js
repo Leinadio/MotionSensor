@@ -4,7 +4,8 @@ const fs = require('fs');
 const app = express();
 
 app.get('/', (req, res) => {
-  const file = fs.createWriteStream(__dirname + '/video.h264');
+  const fileWrite = fs.createWriteStream(__dirname + '/video.h264');
+  const fileRead = fs.createReadStream(__dirname + '/video.h264');
   const video = raspivid({
     hflip: true,
     width: 1280,
@@ -12,8 +13,8 @@ app.get('/', (req, res) => {
     timeout: 0,
     framerate: 60
   });
-  video.pipe(file);
-  file.pipe(res)
+  video.pipe(fileWrite);
+  fileRead.pipe(res)
 });
 
 app.listen(3000, function () {
