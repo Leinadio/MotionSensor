@@ -1,10 +1,9 @@
 const { spawn } = require('child_process');
 const express = require('express');
-const raspividStream = require('raspivid-stream');
 const http = require("http");
 const fs = require('fs');
+const raspividStream = require('raspivid-stream');
 const app = express();
-const wss = require('express-ws')(app);
 
 /**
  * -n = no preview
@@ -20,35 +19,17 @@ const wss = require('express-ws')(app);
 // const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
-
-app.get('/', (req, res) => {
-  videoStream.on('data', (data) => {
-    console.log('data : ', data);
-    data.pipe(res)
-  });
+const videoStream = raspividStream({
+  rotation: 180,
+  preview: true
 });
 
-app.ws('/video-stream', (ws, req) => {
-  ws.send(JSON.stringify({
-    action: 'init',
-    width: '960',
-    height: '540'
-  }));
-
-  const videoStream = raspividStream({
-    rotation: 180,
-    preview: true
-  });
-
+app.get('/', (req, res) => {
+  const file = fs.createWriteStream(__dirname + '/video.h264');
   videoStream.on('data', (data) => {
-    ws.send(data, { binary: true }, (error) => { if (error) console.error(error); });
+    file.push(data);
+    file.pipe(res)
   });
-
-  ws.on('close', () => {
-    console.log('Client left');
-    videoStream.removeAllListeners('data');
-  });
-
 });
 
 app.listen(3000, function () {
