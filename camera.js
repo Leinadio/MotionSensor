@@ -1,4 +1,4 @@
-const child = require('child_process');
+const spawn = require('child_process');
 const express = require('express');
 const fs = require('fs');
 const raspividStream = require('raspivid-stream');
