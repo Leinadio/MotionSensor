@@ -2,6 +2,7 @@ const { spawn } = require('child_process');
 const express = require('express');
 const http = require("http");
 const fs = require('fs');
+const raspividStream = require('raspivid-stream');
 const app = express();
 
 /**
@@ -15,8 +16,14 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
+// const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
+
+const videoStream = raspividStream({ rotation: 180 });
+
+videoStream.on('data', (data) => {
+  console.log('data : ', data);
+});
 
 app.get('/', (req, res) => {
   child.stdout.pipe(res)
