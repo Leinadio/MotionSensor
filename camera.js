@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
   a.on('data', (data) => {
     console.log('data : ', data)
   })
+  a.pipe(res);
   // videoStream.on('data', (data) => {
   //   console.log('data : ', data.toString())
   // });
