@@ -24,7 +24,7 @@ const videoStream = raspividStream({
 
 app.get('/', (req, res) => {
   videoStream.on('data', (data) => {
-    res.send(data);
+    console.log('data : ', data.toString())
   });
 });
 
