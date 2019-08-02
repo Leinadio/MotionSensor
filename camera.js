@@ -24,7 +24,7 @@ spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '
 // });
 
 app.get('/', (req, res) => {
-  const a = fs.createReadStream('vid.h264');
+  const a = fs.createReadStream('vid.mp4');
   a.on('data', (data) => {
     console.log('data : ', data)
   })
