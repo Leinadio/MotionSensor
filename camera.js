@@ -27,7 +27,7 @@ spawn('MP4Box', ['-add', 'pivideo.h264', 'vid.mp4']);
 app.get('/', (req, res) => {
   const a = fs.createReadStream('./pivideo.h264');
   const head = {
-    'Content-Type': 'video/mp4',
+    'Content-Type': 'video/h264',
   };
   res.writeHead(200, head);
   a.on('data', (data) => {
