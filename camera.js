@@ -23,10 +23,8 @@ const videoStream = raspividStream({
 });
 
 app.get('/', (req, res) => {
-  const file = fs.createWriteStream(__dirname + '/video.h264');
   videoStream.on('data', (data) => {
-    file.push(data);
-    file.pipe(res)
+    res.send(data);
   });
 });
 
