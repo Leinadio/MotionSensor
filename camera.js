@@ -14,18 +14,22 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-// const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
+const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', 'vid.h264']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
-const videoStream = raspividStream({
-  rotation: 180,
-  preview: true
-});
+// const videoStream = raspividStream({
+//   rotation: 180,
+//   preview: true
+// });
 
 app.get('/', (req, res) => {
-  videoStream.on('data', (data) => {
-    console.log('data : ', data.toString())
-  });
+  const a = fs.createReadStream('vid.h264');
+  a.on('data', (data) => {
+    console.log('data : ', data)
+  })
+  // videoStream.on('data', (data) => {
+  //   console.log('data : ', data.toString())
+  // });
 });
 
 app.listen(3000, function () {
