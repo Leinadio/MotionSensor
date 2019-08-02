@@ -5,6 +5,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   raspivid({
+    preview: true,
     width: 1280,
     height: 1024,
     timeout: 0,
