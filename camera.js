@@ -25,6 +25,10 @@ spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '
 
 app.get('/', (req, res) => {
   const a = fs.createReadStream('vid.mp4');
+  const head = {
+    'Content-Type': 'video/mp4',
+  };
+  res.writeHead(200, head);
   a.on('data', (data) => {
     console.log('data : ', data)
   })
