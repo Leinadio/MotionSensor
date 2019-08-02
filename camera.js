@@ -24,12 +24,11 @@ const videoStream = raspividStream({
   preview: true
 });
 
-videoStream.on('data', (data) => {
-  console.log('data : ', data);
-});
-
 app.get('/', (req, res) => {
-  child.stdout.pipe(res)
+  videoStream.on('data', (data) => {
+    console.log('data : ', data);
+  });
+  data.pipe(res)
 });
 
 app.listen(3000, function () {
