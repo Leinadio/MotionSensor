@@ -15,7 +15,7 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', 'vid.h264']);
+spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', 'vid.h264']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
 // const videoStream = raspividStream({
