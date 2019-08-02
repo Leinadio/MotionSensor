@@ -1,7 +1,7 @@
 const raspivid = require('raspivid');
 const express = require('express');
 const fs = require('fs');
-
+const app = express();
 
 app.get('/', (req, res) => {
   const file = fs.createWriteStream(__dirname + '/video.h264');
