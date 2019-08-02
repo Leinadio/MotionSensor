@@ -15,7 +15,7 @@ const app = express();
  * -o Set output
  * @type {ChildProcessWithoutNullStreams}
  */
-spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', 'vid.h264']);
+spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '-o', 'vid.mp4']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
 // const videoStream = raspividStream({
@@ -24,7 +24,7 @@ spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60', '
 // });
 
 app.get('/', (req, res) => {
-  const a = fs.createReadStream('vid.mp4');
+  const a = fs.createReadStream('./vid.mp4');
   const head = {
     'Content-Type': 'video/mp4',
   };
