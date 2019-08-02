@@ -2,7 +2,19 @@ const { spawn } = require('child_process');
 const express = require('express');
 const http = require("http");
 const fs = require('fs');
+const raspividStream = require('raspivid-stream');
 const app = express();
+
+const videoStream = raspividStream();
+
+// To stream over websockets:
+videoStream.on('data', (data) => {
+  console.log('data : ', data);
+  ws.send(data, { binary: true }, (error) => {
+    if (error) console.error(error);
+  });
+}
+
 
 /**
  * -n = no preview
