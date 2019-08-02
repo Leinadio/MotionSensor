@@ -19,7 +19,10 @@ const app = express();
 // const child = spawn('raspivid', ['-hf', '-w', '1280', '-h', '1024', '-t', '0', '-fps', '60']);
 // const child = spawn('raspivid', ['-t', '9999999', '-o', '-', '-n']);
 
-const videoStream = raspividStream({ rotation: 180 });
+const videoStream = raspividStream({
+  rotation: 180,
+  preview: true
+});
 
 videoStream.on('data', (data) => {
   console.log('data : ', data);
