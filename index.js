@@ -1,5 +1,7 @@
 const five = require("johnny-five");
 const Raspi = require('raspi-io').RaspiIO;
+const Raspistill = require('node-raspistill').Raspistill;
+const camera = new Raspistill();
 const board = new five.Board({
   io: new Raspi()
 });
@@ -17,6 +19,13 @@ board.on("ready", function() {
   // "motionstart" events are fired when the "calibrated"
   // proximal area is disrupted, generally by some form of movement
   motion.on("motionstart", function() {
+    camera.takePhoto()
+      .then((photo) => {
+        console.log('photo : ', photo);
+      })
+      .catch((err) => {
+        console.log('err : ', err)
+      });
     console.log("motionstart");
   });
 
