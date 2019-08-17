@@ -13,6 +13,7 @@
     "express": "^4.16.4",
     "johnny-five": "^1.0.0",
     "node-raspistill": "0.0.16",
+    "raspi-io": "10.0.2",
     "raspivid": "^1.0.0"
   }
 }
