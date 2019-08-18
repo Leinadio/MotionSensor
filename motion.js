@@ -4,7 +4,10 @@ const Raspi = require('raspi-io').RaspiIO;
 const Raspistill = require('node-raspistill').Raspistill;
 const FormData = require('form-data');
 const axios = require('axios');
-const camera = new Raspistill();
+const moment = require('moment');
+const camera = new Raspistill({
+  fileName: moment.format(),
+});
 const board = new five.Board({
   io: new Raspi()
 });
@@ -22,31 +25,36 @@ board.on("ready", function() {
   // "motionstart" events are fired when the "calibrated"
   // proximal area is disrupted, generally by some form of movement
   motion.on("motionstart", function() {
+    console.log("motionstart");
+    console.log('capture photos start');
     camera.takePhoto()
       .then((photo) => {
         const formData = new FormData();
-        // console.log('formData : ', formData);
-        // console.log('photo : ', photo);
         formData.append('photo', photo);
-        // console.log('formData.getBuffer() : ', formData.getBuffer());
-        // console.log('formData.getHeaders() : ', formData.getHeaders());
-        axios({
-          method: 'POST',
-          url: 'http://192.168.1.43:8080/fileSend',
-          data: formData.getBuffer(),
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-        }).then((response) => {
+        axios.post( 'http://192.168.1.43:8080/fileSend',
+          formData.getBuffer(),
+          formData.getHeaders()
+        ).then((response) => {
           console.log('response : ', response);
         }).catch((e) => {
           console.log('e : ', e);
-        })
+        });
+        // axios({
+        //   method: 'POST',
+        //   url: 'http://192.168.1.43:8080/fileSend',
+        //   data: formData.getBuffer(),
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data'
+        //   },
+        // }).then((response) => {
+        //   console.log('response : ', response);
+        // }).catch((e) => {
+        //   console.log('e : ', e);
+        // })
       })
       .catch((err) => {
         console.log('err : ', err)
       });
-    console.log("motionstart");
   });
 
   // "motionend" events are fired following a "motionstart" event
