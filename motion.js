@@ -25,11 +25,11 @@ board.on("ready", function() {
     camera.takePhoto()
       .then((photo) => {
         const formData = new FormData();
-        console.log('formData : ', formData);
-        console.log('photo : ', photo);
+        // console.log('formData : ', formData);
+        // console.log('photo : ', photo);
         formData.append('photo', photo);
-        console.log('formData.getBuffer() : ', formData.getBuffer());
-        console.log('formData.getHeaders() : ', formData.getHeaders());
+        // console.log('formData.getBuffer() : ', formData.getBuffer());
+        // console.log('formData.getHeaders() : ', formData.getHeaders());
         axios({
           method: 'GET',
           url: 'http://127.0.0.1:8080/filesend',
