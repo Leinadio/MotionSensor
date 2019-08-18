@@ -31,26 +31,18 @@ board.on("ready", function() {
       .then((photo) => {
         const formData = new FormData();
         formData.append('photo', photo);
-        axios.post( 'http://192.168.1.43:8080/fileSend',
-          formData.getBuffer(),
-          formData.getHeaders()
-        ).then((response) => {
+        axios({
+          method: 'POST',
+          url: 'http://192.168.1.43:8080/fileSend',
+          data: formData.getBuffer(),
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        }).then((response) => {
           console.log('response : ', response);
         }).catch((e) => {
           console.log('e : ', e);
-        });
-        // axios({
-        //   method: 'POST',
-        //   url: 'http://192.168.1.43:8080/fileSend',
-        //   data: formData.getBuffer(),
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data'
-        //   },
-        // }).then((response) => {
-        //   console.log('response : ', response);
-        // }).catch((e) => {
-        //   console.log('e : ', e);
-        // })
+        })
       })
       .catch((err) => {
         console.log('err : ', err)
