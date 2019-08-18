@@ -1,6 +1,8 @@
 const five = require("johnny-five");
+const fs = require('fs');
 const Raspi = require('raspi-io').RaspiIO;
 const Raspistill = require('node-raspistill').Raspistill;
+const FormData = require('form-data');
 const camera = new Raspistill();
 const board = new five.Board({
   io: new Raspi()
@@ -24,6 +26,9 @@ board.on("ready", function() {
         const formData = new FormData();
         console.log('formData : ', formData);
         console.log('photo : ', photo);
+        formData.append('photo', photo);
+        console.log('formData.getBuffer() : ', formData.getBuffer());
+        console.log('formData.getHeaders() : ', formData.getHeaders());
       })
       .catch((err) => {
         console.log('err : ', err)
