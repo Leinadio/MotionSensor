@@ -37,6 +37,7 @@ board.on("ready", function() {
           data: formData.getBuffer(),
           headers: formData.getHeaders(),
         }).then((response) => {
+          // TODO: Après avoir envoyé la photo, supprimer la photo du repertoire d'uploads
           console.log('response : ', response);
         }).catch((e) => {
           console.log('e : ', e);
