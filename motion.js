@@ -21,6 +21,8 @@ board.on("ready", function() {
   motion.on("motionstart", function() {
     camera.takePhoto()
       .then((photo) => {
+        const formData = new FormData();
+        console.log('formData : ', formData);
         console.log('photo : ', photo);
       })
       .catch((err) => {
