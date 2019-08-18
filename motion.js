@@ -38,7 +38,7 @@ board.on("ready", function() {
         }).then((response) => {
           console.log('response : ', response);
         }).catch((e) => {
-          res.end(JSON.stringify(`Error catch : ${e}`));
+          console.log('e : ', e);
         })
       })
       .catch((err) => {
