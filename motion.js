@@ -32,7 +32,7 @@ board.on("ready", function() {
         // console.log('formData.getHeaders() : ', formData.getHeaders());
         axios({
           method: 'GET',
-          url: 'http://127.0.0.1:8080/fileSend',
+          url: 'https://homeautomation-5hccb2a5ea-ew.a.run.app/fileSend',
           data: formData.getBuffer(),
           headers: formData.getHeaders(),
         }).then((response) => {
