@@ -32,7 +32,7 @@ board.on("ready", function() {
         // console.log('formData.getHeaders() : ', formData.getHeaders());
         axios({
           method: 'GET',
-          url: 'http://192.168.1.43/fileSend',
+          url: 'http://192.168.1.43:8080/fileSend',
           data: formData.getBuffer(),
           headers: formData.getHeaders(),
         }).then((response) => {
