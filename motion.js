@@ -3,6 +3,7 @@ const fs = require('fs');
 const Raspi = require('raspi-io').RaspiIO;
 const Raspistill = require('node-raspistill').Raspistill;
 const FormData = require('form-data');
+const axios = require('axios');
 const camera = new Raspistill();
 const board = new five.Board({
   io: new Raspi()
@@ -29,6 +30,16 @@ board.on("ready", function() {
         formData.append('photo', photo);
         console.log('formData.getBuffer() : ', formData.getBuffer());
         console.log('formData.getHeaders() : ', formData.getHeaders());
+        axios({
+          method: 'GET',
+          url: 'http://127.0.0.1:8080/filesend',
+          data: formData.getBuffer(),
+          headers: formData.getHeaders(),
+        }).then((response) => {
+          console.log('response : ', response);
+        }).catch((e) => {
+          res.end(JSON.stringify(`Error catch : ${e}`));
+        })
       })
       .catch((err) => {
         console.log('err : ', err)
