@@ -34,7 +34,9 @@ board.on("ready", function() {
           method: 'POST',
           url: 'http://192.168.1.43:8080/fileSend',
           data: formData.getBuffer(),
-          headers: formData.getHeaders(),
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
         }).then((response) => {
           console.log('response : ', response);
         }).catch((e) => {
