@@ -30,7 +30,7 @@ board.on("ready", function() {
     camera.takePhoto()
       .then((photo) => {
         const formData = new FormData();
-        formData.append('file', photo, 'laphoto');
+        formData.append('filea', photo, 'laphoto');
         axios({
           method: 'POST',
           url: 'http://192.168.1.43:8080/fileSend',
