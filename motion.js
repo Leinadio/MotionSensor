@@ -6,7 +6,7 @@ const FormData = require('form-data');
 const axios = require('axios');
 const moment = require('moment');
 const camera = new Raspistill({
-  fileName: moment.format(),
+  fileName: moment().format(),
 });
 const board = new five.Board({
   io: new Raspi()
