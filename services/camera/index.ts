@@ -7,12 +7,13 @@ const camera = new Raspistill({
   fileName: moment().format(),
 });
 
-export default async function(callback) {
+export async function capturePicture(callback: any) {
   try {
     const photo = await camera.takePhoto();
     const formData = new FormData();
     formData.append('file', photo, 'laphoto');
-    callback();
+    console.log('formData : ', formData);
+    callback(formData);
   } catch (e) {
     console.log('e : ', e);
     callback(e);
@@ -38,4 +39,3 @@ export default async function(callback) {
   //     console.log('err : ', err)
   //   });
 }
-
