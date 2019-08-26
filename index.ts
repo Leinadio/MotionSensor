@@ -3,7 +3,7 @@ import { capturePicture } from './services/camera'
 
 function handleMotionValue({ status, description }: { status: number, description: string}) {
   if (status === 2) {
-    capturePicture((val) => {
+    capturePicture((val: any) => {
       console.log('val : ', val)
     })
   }
