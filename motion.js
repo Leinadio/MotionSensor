@@ -1,18 +1,14 @@
 const five = require("johnny-five");
-const fs = require('fs');
-const Raspi = require('raspi-io').RaspiIO;
 const Raspistill = require('node-raspistill').Raspistill;
 const FormData = require('form-data');
 const axios = require('axios');
 const moment = require('moment');
+import { Board } from './hardware/board'
 const camera = new Raspistill({
   fileName: moment().format(),
 });
-const board = new five.Board({
-  io: new Raspi()
-});
 
-board.on("ready", function() {
+Board.on("ready", function() {
 
   // Create a new `motion` hardware instance.
   const motion = new five.Motion('7');
