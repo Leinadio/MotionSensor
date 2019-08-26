@@ -7,16 +7,15 @@ const camera = new Raspistill({
   fileName: moment().format(),
 });
 
-export async function capturePicture(callback: any) {
+export async function capturePicture() {
   try {
     const photo = await camera.takePhoto();
     const formData = new FormData();
     formData.append('file', photo, 'laphoto');
-    console.log('formData : ', formData);
-    callback(formData);
+    return formData;
   } catch (e) {
     console.log('e : ', e);
-    callback(e);
+    return e;
   }
 
   // camera.takePhoto()
