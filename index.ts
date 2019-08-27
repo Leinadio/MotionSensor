@@ -12,6 +12,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
       connected = await connectToApi();
     }
     console.log('connected : ', connected);
+    console.log('picture.getHeaders() :', picture.getHeaders());
     // console.log('connected : ', connected);
     const response = await axios({
       method: 'POST',
