@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:concurrently": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
-    "build": "sudo tsc && node dist/index.js"
+    "build": "tsc && node dist/index.js"
   },
   "keywords": [],
   "author": "",
