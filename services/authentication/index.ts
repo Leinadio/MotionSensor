@@ -12,5 +12,6 @@ export async function connectToApi() {
       grant_type:"client_credentials"
     }
   });
-  return response;
+  console.log('response : ', response.data);
+  return response.data;
 }
