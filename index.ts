@@ -11,7 +11,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
     if (!connected) {
       connected = await connectToApi();
     }
-    console.log('connected : ', connected);
+    // console.log('connected : ', connected);
     const response = await axios({
       method: 'POST',
       url: 'http://192.168.1.43:8080/fileSend',
