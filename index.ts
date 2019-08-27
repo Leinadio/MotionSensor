@@ -8,7 +8,7 @@ let connected: any = null;
 async function handleMotionValue({ status, description }: { status: number, description: string}) {
   if (status === 2) {
     const picture = await capturePicture();
-    if (connected) {
+    if (!connected) {
       connected = connectToApi();
     }
     console.log('connected : ', connected);
