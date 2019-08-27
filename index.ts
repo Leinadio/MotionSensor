@@ -9,7 +9,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
   if (status === 2) {
     const picture = await capturePicture();
     if (!connected) {
-      connected = connectToApi();
+      connected = await connectToApi();
     }
     console.log('connected : ', connected);
     const response = await axios({
