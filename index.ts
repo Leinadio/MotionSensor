@@ -25,10 +25,10 @@ async function handleMotionValue({ status, description }: { status: number, desc
         }
       }
     `;
-    console.log('picture.getBuffer() : ', picture.getBuffer());
+    // console.log('picture.getBuffer() : ', picture.getBuffer());
     client.mutate({
       mutation: UPLOAD_FILE,
-      variables: { file: picture.getBuffer() },
+      variables: { file: picture },
     })
       .then((data: any) => console.log('data : ', data))
       .catch((error: any) => console.error(error));    // console.log('connected : ', connected);

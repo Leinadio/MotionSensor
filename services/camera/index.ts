@@ -10,9 +10,9 @@ export async function capturePicture() {
   try {
     const photo = await camera.takePhoto();
     console.log('photo : ', photo);
-    const formData = new FormData();
-    formData.append('file', photo, 'laphoto');
-    return formData;
+    // const formData = new FormData();
+    // formData.append('file', photo, 'laphoto');
+    return photo;
   } catch (e) {
     console.log('e : ', e);
     return e;
