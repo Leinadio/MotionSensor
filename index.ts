@@ -1,8 +1,6 @@
-import gql from 'graphql-tag';
-import axios from 'axios';
 import Motion from './services/motion';
 import { capturePicture } from './services/camera'
-import { connectToApi } from "./services/authentication";
+import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
 
 // let connected: any = null;
@@ -28,8 +26,8 @@ async function handleMotionValue({ status, description }: { status: number, desc
       mutation: UPLOAD_FILE,
       variables: { file: picture.getBuffer() },
     })
-      .then(data => console.log('data : ', data))
-      .catch(error => console.error(error));    // console.log('connected : ', connected);
+      .then((data: any) => console.log('data : ', data))
+      .catch((error: any) => console.error(error));    // console.log('connected : ', connected);
     // const response = await axios({
     //   method: 'POST',
     //   url: 'http://192.168.1.43:8080/',
