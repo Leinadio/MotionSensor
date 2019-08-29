@@ -25,6 +25,8 @@ async function handleMotionValue({ status, description }: { status: number, desc
   if (status === 2) {
     const picture = await capturePicture();
     console.log('picture : ', picture);
+    const file: any = new Blob([picture], { type: 'image/png' });
+    file.name = `hello.png`;
     // if (!connected) {
     //   connected = await connectToApi();
     // }
