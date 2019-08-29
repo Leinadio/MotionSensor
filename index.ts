@@ -2,11 +2,13 @@ import Motion from './services/motion';
 import { capturePicture } from './services/camera'
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
+import fetch from 'node-fetch';
 
 // let connected: any = null;
 
 const client = new ApolloClient({
-  uri: 'http://192.168.1.43:8080/'
+  uri: 'http://192.168.1.43:8080/',
+  fetch
 });
 
 async function handleMotionValue({ status, description }: { status: number, description: string}) {
