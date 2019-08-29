@@ -5,6 +5,7 @@ import ApolloClient from 'apollo-client';
 import fetch from 'node-fetch';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createUploadLink } from 'apollo-upload-client';
+import Blob from 'blob';
 
 // let connected: any = null;
 
