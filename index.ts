@@ -1,14 +1,24 @@
 import Motion from './services/motion';
 import { capturePicture } from './services/camera'
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-boost';
+import ApolloClient from 'apollo-client';
 import fetch from 'node-fetch';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { createUploadLink } from 'apollo-upload-client';
 
 // let connected: any = null;
 
+// const client = new ApolloClient({
+//   uri: 'http://192.168.1.43:8080/',
+//   fetch,
+// });
+
 const client = new ApolloClient({
-  uri: 'http://192.168.1.43:8080/',
-  fetch
+  cache: new InMemoryCache(),
+  link: createUploadLink({
+    uri: 'http://192.168.1.43:8080/',
+    fetch
+  })
 });
 
 async function handleMotionValue({ status, description }: { status: number, description: string}) {
