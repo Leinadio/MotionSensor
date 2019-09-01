@@ -23,8 +23,12 @@ const client = new ApolloClient({
 });
 
 async function handleMotionValue({ status, description }: { status: number, description: string}) {
+  console.log('description : ', description);
   if (status === 2) {
     const picture = await capturePicture();
+    if (picture) {
+      return;
+    }
     // if (!connected) {
     //   connected = await connectToApi();
     // }
@@ -40,7 +44,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
       variables: { file: picture },
     })
       .then((data: any) => console.log('data : ', data))
-      .catch((error: any) => console.error(error));
+      .catch((error: any) => console.error('error : ', error));
     // const response = await axios({
     //   method: 'POST',
     //   url: 'http://192.168.1.43:8080/',
