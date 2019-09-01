@@ -23,7 +23,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
     }
 
     const UPLOAD_FILE = gql`
-      mutation singleUpload($file: Upload!) {
+      mutation singleUpload($file: Upload!) { 
         singleUpload(file: $file) {
           filename
         }
@@ -35,14 +35,6 @@ async function handleMotionValue({ status, description }: { status: number, desc
     })
       .then((data: any) => console.log('data : ', data))
       .catch((error: any) => console.error('error : ', error));
-    // const response = await axios({
-    //   method: 'POST',
-    //   url: 'http://192.168.1.43:8080/',
-    //   data: `{"query":"mutation {\\n  Image(id: 2, name: "lol"}){\\n    id,\\n    title\\n  }\\n}","variables":null}`,
-    //   // data: picture.getBuffer(),
-    //   headers: picture.getHeaders(),
-    // });
-    // console.log('response : ', response);
   }
 }
 
