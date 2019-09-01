@@ -14,7 +14,6 @@ export async function capturePicture() {
     // formData.append('file', photo, 'laphoto');
     return photo;
   } catch (e) {
-    console.log('e : ', e);
-    return e;
+    return null;
   }
 }
