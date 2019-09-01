@@ -37,7 +37,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
     `;
     client.mutate({
       mutation: UPLOAD_FILE,
-      variables: { file: picture.getBuffer() },
+      variables: { file: picture },
     })
       .then((data: any) => console.log('data : ', data))
       .catch((error: any) => console.error(error));
