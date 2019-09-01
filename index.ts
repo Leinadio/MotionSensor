@@ -26,7 +26,7 @@ async function handleMotionValue({ status, description }: { status: number, desc
   console.log('description : ', description);
   if (status === 2) {
     const picture = await capturePicture();
-    if (picture) {
+    if (!picture) {
       return;
     }
     // if (!connected) {
