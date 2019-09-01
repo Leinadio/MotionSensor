@@ -1,5 +1,4 @@
 import { Raspistill } from 'node-raspistill';
-import FormData from 'form-data';
 import moment from 'moment';
 
 const camera = new Raspistill({

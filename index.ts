@@ -5,14 +5,6 @@ import ApolloClient from 'apollo-client';
 import fetch from 'node-fetch';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createUploadLink } from 'apollo-upload-client';
-// import Blob from 'blob';
-
-// let connected: any = null;
-
-// const client = new ApolloClient({
-//   uri: 'http://192.168.1.43:8080/',
-//   fetch,
-// });
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -27,12 +19,9 @@ async function handleMotionValue({ status, description }: { status: number, desc
   if (status === 2) {
     const picture = await capturePicture();
     if (!picture) {
-      console.log('picture : ', picture);
       return;
     }
-    // if (!connected) {
-    //   connected = await connectToApi();
-    // }
+
     const UPLOAD_FILE = gql`
       mutation singleUpload($file: Upload!) {
         singleUpload(file: $file) {
