@@ -5,7 +5,7 @@ import ApolloClient from 'apollo-client';
 import fetch from 'node-fetch';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createUploadLink } from 'apollo-upload-client';
-import Blob from 'blob';
+// import Blob from 'blob';
 
 // let connected: any = null;
 
@@ -25,9 +25,6 @@ const client = new ApolloClient({
 async function handleMotionValue({ status, description }: { status: number, description: string}) {
   if (status === 2) {
     const picture = await capturePicture();
-    console.log('picture : ', picture);
-    const file: any = new Blob([picture], { type: 'image/png' });
-    file.name = `hello.png`;
     // if (!connected) {
     //   connected = await connectToApi();
     // }
@@ -38,13 +35,12 @@ async function handleMotionValue({ status, description }: { status: number, desc
         }
       }
     `;
-    // console.log('picture.getBuffer() : ', picture.getBuffer());
     client.mutate({
       mutation: UPLOAD_FILE,
-      variables: { file: picture },
+      variables: { file: picture.getBuffer() },
     })
       .then((data: any) => console.log('data : ', data))
-      .catch((error: any) => console.error(error));    // console.log('connected : ', connected);
+      .catch((error: any) => console.error(error));
     // const response = await axios({
     //   method: 'POST',
     //   url: 'http://192.168.1.43:8080/',
