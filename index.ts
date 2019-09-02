@@ -36,6 +36,7 @@ async function start() {
     //     authorization: token ? `Bearer ${token}` : "",
     //   }
     // }
+    return null;
   });
 
   const uploadLink = createUploadLink({
