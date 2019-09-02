@@ -25,19 +25,19 @@ async function start() {
   });
   // console.log('user : ', user);
 
-  const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
-    // const token = localStorage.getItem('token');
-    console.log('user 2 : ', user);
-    // return the headers to the context so httpLink can read them
-    // return {
-    //   headers: {
-    //     ...headers,
-    //     authorization: token ? `Bearer ${token}` : "",
-    //   }
-    // }
-    return null;
-  });
+  // const authLink = setContext((_, { headers }) => {
+  //   // get the authentication token from local storage if it exists
+  //   // const token = localStorage.getItem('token');
+  //   console.log('user 2 : ', user);
+  //   // return the headers to the context so httpLink can read them
+  //   // return {
+  //   //   headers: {
+  //   //     ...headers,
+  //   //     authorization: token ? `Bearer ${token}` : "",
+  //   //   }
+  //   // }
+  //   return null;
+  // });
 
   const uploadLink = createUploadLink({
     uri: 'http://192.168.1.43:8080/',
@@ -46,7 +46,7 @@ async function start() {
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: ApolloLink.from([authLink, uploadLink]),
+    link: ApolloLink.from([uploadLink]),
   });
 
   async function handleMotionValue({ status, description }: { status: number, description: string}) {
