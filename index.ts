@@ -23,19 +23,19 @@ async function start() {
       grant_type:"client_credentials"
     }
   });
-  console.log('user : ', user);
+  // console.log('user : ', user);
 
   const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     console.log('user 2 : ', user);
     // return the headers to the context so httpLink can read them
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : "",
-      }
-    }
+    // return {
+    //   headers: {
+    //     ...headers,
+    //     authorization: token ? `Bearer ${token}` : "",
+    //   }
+    // }
   });
 
   const uploadLink = createUploadLink({
