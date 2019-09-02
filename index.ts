@@ -39,14 +39,17 @@ async function start() {
   //   return null;
   // });
 
-  const uploadLink = createUploadLink({
-    uri: 'http://192.168.1.43:8080/',
-    fetch
-  });
+  // const uploadLink = createUploadLink({
+  //   uri: 'http://192.168.1.43:8080/',
+  //   fetch
+  // });
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([createUploadLink({
+      uri: 'http://192.168.1.43:8080/',
+      fetch
+    })]),
   });
 
   async function handleMotionValue({ status, description }: { status: number, description: string}) {
