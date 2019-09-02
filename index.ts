@@ -9,29 +9,26 @@ import { setContext } from 'apollo-link-context';
 import { createUploadLink } from 'apollo-upload-client';
 const axios = require('axios');
 
-async function start() {
-  async function authenticate() {
-    const user = await axios({
-      method: 'POST',
-      url: 'https://dashbardleinadio.eu.auth0.com/oauth/token',
-      headers: { 'content-type': 'application/json' },
-      data: {
-        client_id:"YnMr32CjcdKUY7SFJryEnZlelzGP1pDa",
-        client_secret:"1p7y-q72RRdmhaC7ZDLshuALVfTPRKvWTqiQscj6PUP9EKAIjf5C7UjHcdFTcair",
-        audience:"home-automation",
-        grant_type:"client_credentials"
-      }
-    });
-    console.log('user : ', user);
-    return user;
-  }
+let user: any = null;
 
-  const user = await authenticate();
+async function start() {
+  user = await axios({
+    method: 'POST',
+    url: 'https://dashbardleinadio.eu.auth0.com/oauth/token',
+    headers: { 'content-type': 'application/json' },
+    data: {
+      client_id:"YnMr32CjcdKUY7SFJryEnZlelzGP1pDa",
+      client_secret:"1p7y-q72RRdmhaC7ZDLshuALVfTPRKvWTqiQscj6PUP9EKAIjf5C7UjHcdFTcair",
+      audience:"home-automation",
+      grant_type:"client_credentials"
+    }
+  });
   console.log('user : ', user);
 
   const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('token');
+    console.log('user 2 : ', user);
     // return the headers to the context so httpLink can read them
     return {
       headers: {
