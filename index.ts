@@ -12,44 +12,41 @@ const axios = require('axios');
 let user: any = null;
 
 async function start() {
-//   user = await axios({
-//     method: 'POST',
-//     url: 'https://dashbardleinadio.eu.auth0.com/oauth/token',
-//     headers: { 'content-type': 'application/json' },
-//     data: {
-//       client_id:"YnMr32CjcdKUY7SFJryEnZlelzGP1pDa",
-//       client_secret:"1p7y-q72RRdmhaC7ZDLshuALVfTPRKvWTqiQscj6PUP9EKAIjf5C7UjHcdFTcair",
-//       audience:"home-automation",
-//       grant_type:"client_credentials"
-//     }
-//   });
+  user = await axios({
+    method: 'POST',
+    url: 'https://dashbardleinadio.eu.auth0.com/oauth/token',
+    headers: { 'content-type': 'application/json' },
+    data: {
+      client_id:"YnMr32CjcdKUY7SFJryEnZlelzGP1pDa",
+      client_secret:"1p7y-q72RRdmhaC7ZDLshuALVfTPRKvWTqiQscj6PUP9EKAIjf5C7UjHcdFTcair",
+      audience:"home-automation",
+      grant_type:"client_credentials"
+    }
+  });
   // console.log('user : ', user);
 
-  // const authLink = setContext((_, { headers }) => {
-  //   // get the authentication token from local storage if it exists
-  //   // const token = localStorage.getItem('token');
-  //   console.log('user 2 : ', user);
-  //   // return the headers to the context so httpLink can read them
-  //   // return {
-  //   //   headers: {
-  //   //     ...headers,
-  //   //     authorization: token ? `Bearer ${token}` : "",
-  //   //   }
-  //   // }
-  //   return null;
-  // });
+  const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    // const token = localStorage.getItem('token');
+    console.log('user 2 : ', user);
+    // return the headers to the context so httpLink can read them
+    // return {
+    //   headers: {
+    //     ...headers,
+    //     authorization: token ? `Bearer ${token}` : "",
+    //   }
+    // }
+    return null;
+  });
 
-  // const uploadLink = createUploadLink({
-  //   uri: 'http://192.168.1.43:8080/',
-  //   fetch
-  // });
+  const uploadLink = createUploadLink({
+    uri: 'http://192.168.1.43:8080/',
+    fetch
+  });
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: ApolloLink.from([createUploadLink({
-      uri: 'http://192.168.1.43:8080/',
-      fetch
-    })]),
+    link: ApolloLink.from([authLink, uploadLink]),
   });
 
   async function handleMotionValue({ status, description }: { status: number, description: string}) {
