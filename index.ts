@@ -23,7 +23,7 @@ async function start() {
       grant_type:"client_credentials"
     }
   });
-  console.log('user : ', user);
+  console.log('user : ', user.data);
 
   // const authLink = setContext((_, { headers }) => {
   //   // get the authentication token from local storage if it exists
