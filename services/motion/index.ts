@@ -1,50 +1,30 @@
+import { launchBoard } from '../../hardware/board';
+import * as events from './events'
 import five from 'johnny-five';
-import { Board } from '../../hardware/board'
 
-function Motion (callback: any) {
-  const motionOption = {};
-  Board.on("ready", function() {
-
-    // Create a new `motion` hardware instance.
-    const motion = new five.Motion(7);
-
-    // "calibrated" occurs once, at the beginning of a session,
-    motion.on("calibrated", function() {
-      callback({
-        ...motionOption,
-        status: 1,
-        description: 'The device is calibrated'
-      });
-      console.log("calibrated");
-    });
-
-    // "motionstart" events are fired when the "calibrated"
-    // proximal area is disrupted, generally by some form of movement
-    motion.on("motionstart", function() {
-      callback({
-        ...motionOption,
-        status: 2,
-        description: 'A movement is detected'
-      });
-    });
-
-    // "motionend" events are fired following a "motionstart" event
-    // when no movement has occurred in X ms
-    motion.on("motionend", function() {
-      callback({
-        ...motionOption,
-        status: 3,
-        description: 'The movement was stopped'
-      });
-    });
-
-    // motion.on("data", function(data) {
-    //   callback({
-    //     ...motionOption,
-    //     status: 'On data'
-    //   });
-    // });
-  });
+export function onCalibrated({ status, description}: any) {
+  console.log('status : ', status);
+  console.log('description : ', description);
 }
 
-export default Motion;
+export function onMotionStart({ status, description}: any) {
+  return ({ accessToken }: { accessToken: string}) => {
+    console.log('accessToken : ', accessToken);
+    console.log('status : ', status);
+    console.log('description : ', description);
+  }
+}
+
+export function onMotionEnd({ status, description}: any) {
+  console.log('status : ', status);
+  console.log('description : ', description);
+}
+
+export function launchMotion({ accessToken }: { accessToken: string}) {
+  launchBoard(() => {
+    const motion = new five.Motion(7);
+    events.calibrated({ motion, callback: onCalibrated });
+    events.motionStart({ motion, callback: onMotionStart({ accessToken }) });
+    events.motionEnd({ motion, callback: onMotionEnd });
+  });
+}
