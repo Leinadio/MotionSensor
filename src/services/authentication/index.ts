@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import Config from '../../../config';
 
 export async function launchAuthentication() {
