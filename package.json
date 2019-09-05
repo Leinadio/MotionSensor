@@ -2,10 +2,10 @@
   "name": "sensor-on-camera",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start:concurrently": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"NODE_ENV=DEV nodemon dist/index.js\"",
-    "build": "tsc && NODE_ENV=PROD node dist/index.js"
+    "start:concurrently": "concurrently -k -n \"TypeScript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"NODE_ENV=DEV nodemon dist/app.js\"",
+    "build": "tsc && NODE_ENV=PROD node dist/app.js"
   },
   "keywords": [],
   "author": "",
