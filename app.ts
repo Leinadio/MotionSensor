@@ -9,6 +9,7 @@ import Hardware from './src/hardware';
   }
 
   const accessToken = data.access_token;
+  console.log('accessToken : ', accessToken);
 
   if (accessToken) {
     Hardware()
