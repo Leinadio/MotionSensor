@@ -1,5 +1,6 @@
-import { launchAuthentication } from './services/authentication';
-import { launchMotion } from './services/motion';
+import { launchAuthentication } from './src/services/authentication';
+import { launchMotion } from './src/services/motion';
+import Hardware from './src/hardware';
 
 export default async function () {
   const { statusCode, data } = await launchAuthentication();
@@ -11,6 +12,6 @@ export default async function () {
   const accessToken = data.access_token;
 
   if (accessToken) {
-    launchMotion({ accessToken })
+    Hardware()
   }
 }
