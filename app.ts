@@ -1,4 +1,3 @@
-import config from './config';
 import { launchAuthentication } from './services/authentication';
 import { launchMotion } from './services/motion';
 
