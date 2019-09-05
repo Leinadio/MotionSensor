@@ -1,5 +1,5 @@
 import { launchAuthentication } from './src/services/authentication';
-import { start } from './src/hardware';
+import Hardware from './src/hardware';
 
 async function a() {
   const { statusCode, data } = await launchAuthentication();
@@ -11,9 +11,9 @@ async function a() {
   const accessToken = data.access_token;
   console.log('accessToken : ', accessToken);
 
-  if (accessToken) {
-    start()
-  }
+  // if (accessToken) {
+  //   start()
+  // }
 }
 
 a();
