@@ -25,6 +25,7 @@ function motionend() {
 }
 
 export default () => {
+  console.log('pass here')
   Motion.on('calibrated', calibrated);
   Motion.on('motionstart', motionstart);
   Motion.on('motionend', motionend);
