@@ -1,15 +1,17 @@
 import gql from "graphql-tag";
-import { client } from '../';
+import { client } from '../index';
+
+const mutation = gql`
+  mutation singleUpload($file: Upload!) {
+    singleUpload(file: $file) {
+      filename
+    }
+  }
+`;
 
 export async function upload({ data }: any) {
   const response = await client.mutate({
-    mutation: gql`
-    mutation singleUpload($file: Upload!) {
-      singleUpload(file: $file) {
-        filename
-      }
-    }
-  `,
+    mutation,
     variables: { file: data },
   });
   console.log('response : ', response);
