@@ -22,7 +22,7 @@ function motionend() {
   console.log('description : The movement was stopped');
 }
 
-export default (Motion: any) => {
+export default () => {
   const motion = new five.Motion(7);
   motion.on('calibrated', calibrated);
   motion.on('motionstart', motionstart);
