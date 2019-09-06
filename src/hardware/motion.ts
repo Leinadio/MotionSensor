@@ -1,6 +1,6 @@
-import five from 'johnny-five';
-import { capturePicture } from './camera';
-import { upload } from '../services/graphql/upload/upload';
+// import five from 'johnny-five';
+// import { capturePicture } from './camera';
+// import { upload } from '../services/graphql/upload/upload';
 
 
 //
