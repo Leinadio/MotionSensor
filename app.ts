@@ -1,7 +1,7 @@
 import { launchAuthentication } from './src/services/authentication';
 import Hardware from './src/hardware';
 
-(async () => {
+export default function () {
   const { statusCode, data } = await launchAuthentication();
   if (statusCode === 401) {
     console.log(`Error Message : ${data.error} - ${data.result_description}`);
@@ -14,4 +14,4 @@ import Hardware from './src/hardware';
   if (accessToken) {
     Hardware()
   }
-})();
+}
