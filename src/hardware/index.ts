@@ -4,7 +4,7 @@ import five from "johnny-five";
 console.log('Motion : ', Motion);
 console.log('Board : ', Board);
 
-export default Board.on('ready', () => {
+export default () => Board.on('ready', () => {
   const motion = new five.Motion(7);
   console.log('The Board is ready');
   Motion(motion);
