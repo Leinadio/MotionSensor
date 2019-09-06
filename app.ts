@@ -25,7 +25,7 @@ function motionend() {
   console.log('description : The movement was stopped');
 }
 
-export default async function () {
+(async function () {
   const { statusCode, data } = await launchAuthentication();
   if (statusCode === 401) {
     console.log(`Error Message : ${data.error} - ${data.result_description}`);
@@ -49,4 +49,4 @@ export default async function () {
       motion.on('motionend', motionend);
     })
   }
-}
+})()
