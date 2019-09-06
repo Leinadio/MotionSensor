@@ -40,7 +40,7 @@ export default async function () {
 
     Board.on('ready', () => {
       const motion = new five.Motion(7);
-      console.log('The Board is ready');
+      console.log('The Board is ready sfsf');
       motion.on('calibrated', () => {
         console.log('status : 1');
         console.log('description : The device is calibrated');
