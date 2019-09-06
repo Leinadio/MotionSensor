@@ -1,8 +1,6 @@
 import { Board } from './board';
 import Motion from './motion';
 import five from "johnny-five";
-console.log('Motion : ', Motion);
-console.log('Board : ', Board);
 
 export default () => Board.on('ready', () => {
   const motion = new five.Motion(7);
