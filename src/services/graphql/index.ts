@@ -10,31 +10,31 @@ const uploadLink = createUploadLink({
   fetch
 });
 
-const authLink = new ApolloLink((operation: any, forward: any) => {
-  operation.setContext(({ headers }: any) => {
-    console.log('headers : ', headers)
-    return {
-      headers: {
-        authorization: '', // however you get your token
-        ...headers
-      }
-    }}
-  );
-  return forward(operation);
-});
-
-// const authLink = setContext((_, { headers }) => {
-//   // get the authentication token from local storage if it exists
-//   // const token = localStorage.getItem('token');
-//   const token = '';
-//   // return the headers to the context so httpLink can read them
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : "",
-//     }
-//   }
+// const authLink = new ApolloLink((operation: any, forward: any) => {
+//   operation.setContext(({ headers }: any) => {
+//     console.log('headers : ', headers)
+//     return {
+//       headers: {
+//         authorization: '', // however you get your token
+//         ...headers
+//       }
+//     }}
+//   );
+//   return forward(operation);
 // });
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // const token = localStorage.getItem('token');
+  const token = '';
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
