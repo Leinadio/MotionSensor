@@ -1,8 +1,6 @@
 import { launchAuthentication } from './src/services/authentication';
-import Hardware from './src/hardware';
 import { Board } from "./src/hardware/board";
 import five from "johnny-five";
-import Motion from "./src/hardware/motion";
 import { capturePicture } from "./src/hardware/camera";
 import { upload } from "./src/services/graphql/upload/upload";
 
