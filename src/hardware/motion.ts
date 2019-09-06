@@ -2,8 +2,6 @@ import five from 'johnny-five';
 import { capturePicture } from './camera';
 import { upload } from '../services/graphql/upload/upload';
 
-export const Motion = new five.Motion(7);
-
 function calibrated() {
   console.log('status : 1');
   console.log('description : The device is calibrated');
@@ -24,7 +22,7 @@ function motionend() {
   console.log('description : The movement was stopped');
 }
 
-export default () => {
+export default (Motion: any) => {
   console.log('pass here')
   Motion.on('calibrated', calibrated);
   Motion.on('motionstart', motionstart);
