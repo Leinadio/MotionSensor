@@ -3,6 +3,7 @@ import five from "johnny-five";
 import { capturePicture } from "./src/hardware/camera";
 import { upload } from "./src/services/graphql/upload/upload";
 import { RaspiIO } from "raspi-io";
+import { lol } from './src/hardware/board'
 
 function calibrated() {
   console.log('status : 1');
@@ -35,9 +36,7 @@ export default async function () {
   console.log('accessToken : ', accessToken);
 
   if (accessToken) {
-    const Board = new five.Board({
-      io: new RaspiIO()
-    });
+    const Board = lol()
 
     Board.on('ready', () => {
       const motion = new five.Motion(7);
