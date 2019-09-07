@@ -12,6 +12,7 @@ dotenvFlow.config();
 
   const accessToken = data.access_token;
   process.env.ACCESS_TOKEN = accessToken;
+  console.log('process.env.ACCESS_TOKEN : ', process.env.ACCESS_TOKEN);
 
   if (accessToken) {
     Hardware()
