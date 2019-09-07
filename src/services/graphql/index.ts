@@ -26,6 +26,7 @@ const uploadLink = createUploadLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   // const token = localStorage.getItem('token');
+  console.log('process.env : ', process.env);
   console.log('process.env.ACCESS_TOKEN : ', process.env.ACCESS_TOKEN);
   const token = process.env.ACCESS_TOKEN;
   // return the headers to the context so httpLink can read them
