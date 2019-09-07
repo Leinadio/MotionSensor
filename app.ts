@@ -8,9 +8,8 @@ import Hardware from './src/hardware'
     return false;
   }
 
-  const accessToken = data.access_token;
-
-  if (accessToken) {
+  if (data.access_token) {
+    process.env.ACCESS_TOKEN = data.access_token;
     Hardware()
   }
 })();
