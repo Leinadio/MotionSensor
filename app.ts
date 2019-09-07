@@ -1,7 +1,5 @@
 import { launchAuthentication } from './src/services/authentication';
 import Hardware from './src/hardware'
-import dotenvFlow from 'dotenv-flow';
-dotenvFlow.config();
 
 (async function () {
   const { statusCode, data } = await launchAuthentication();
@@ -10,10 +8,8 @@ dotenvFlow.config();
     return false;
   }
 
-  const accessToken = data.access_token;
-  process.env.ACCESS_TOKEN = accessToken;
-
-  if (accessToken) {
+  if (data.access_token) {
+    process.env.ACCESS_TOKEN = data.access_token;
     Hardware()
   }
 })();
