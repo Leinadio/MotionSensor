@@ -4,7 +4,7 @@ import { client } from '../index';
 const mutation = gql`
   mutation singleUpload($file: Upload!) {
     singleUpload(file: $file) {
-      filename
+      success
     }
   }
 `;
