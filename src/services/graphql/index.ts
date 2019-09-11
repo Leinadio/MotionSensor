@@ -10,25 +10,12 @@ const uploadLink = createUploadLink({
   fetch
 });
 
-// const authLink = new ApolloLink((operation: any, forward: any) => {
-//   operation.setContext(({ headers }: any) => {
-//     console.log('headers : ', headers)
-//     return {
-//       headers: {
-//         authorization: '', // however you get your token
-//         ...headers
-//       }
-//     }}
-//   );
-//   return forward(operation);
-// });
-
 const authLink = setContext((_, { headers }) => {
   const token = process.env.ACCESS_TOKEN;
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `${token}` : "",
     }
   }
 });
