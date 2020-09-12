@@ -25,7 +25,7 @@
     "graphql-tag": "^2.10.1",
     "johnny-five": "^1.0.0",
     "moment": "^2.24.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-raspistill": "0.0.16",
     "raspi-io": "^10.0.2"
   },
